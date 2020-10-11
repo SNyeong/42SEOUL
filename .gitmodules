@@ -1,6 +1,0 @@
-[submodule "42cursus/intra-uuid-0035e5ae-606f-4be3-bc13-9c269af6693f-3327432"]
-	path = 42cursus/intra-uuid-0035e5ae-606f-4be3-bc13-9c269af6693f-3327432
-	url = git@vogsphere.42seoul.kr:vogsphere/intra-uuid-0035e5ae-606f-4be3-bc13-9c269af6693f-3327432
-[submodule "42cursus/0circle/libft"]
-	path = 42cursus/0circle/libft
-	url = git@vogsphere.42seoul.kr:vogsphere/intra-uuid-0035e5ae-606f-4be3-bc13-9c269af6693f-3327432
