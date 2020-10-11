@@ -17,7 +17,7 @@ int	isup(int c)
 	return (c <= 90 && c >= 65);
 }
 
-int	ft_toupper(int c)
+int	ft_tolower(int c)
 {
 	if (isup(c))
 		return (c + 32);
