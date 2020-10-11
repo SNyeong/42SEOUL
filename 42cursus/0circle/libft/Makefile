@@ -6,7 +6,7 @@
 #    By: seungnle <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 01:25:38 by seungnle          #+#    #+#              #
-#    Updated: 2020/10/08 23:12:34 by seungnle         ###   ########.fr        #
+#    Updated: 2020/10/12 08:02:02 by seungnle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,17 @@ FILES		= ft_memset.c \
 				ft_strrchr.c \
 				ft_strnstr.c \
 				ft_strncmp.c \
-				ft_atoi.c
+				ft_atoi.c \
+				ft_isalpha.c \
+				ft_isdigit.c \
+				ft_isalnum.c \
+				ft_isascii.c \
+				ft_isprint.c \
+				ft_toupper.c \
+				ft_tolower.c
 				
 OBJ			= $(FILES:%.c=%.o)
+OBJ_B			= $(FILES_B:%.c=%.o)
 
 all: $(NAME)
 
@@ -39,12 +47,15 @@ $(NAME): $(OBJ)
 $(OBJ): $(FILES)
 	gcc $(CFLAGS) $(FILES)
 
+bonus: $(OBJ_B)
+	ar rcs $(NAME) $(OBJ_B)
+
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(OBJ_B)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: clean fclean all re
+.PHONY: clean fclean all re bonus
