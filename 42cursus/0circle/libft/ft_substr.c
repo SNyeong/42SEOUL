@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/09 02:56:38 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/13 21:07:26 by seungnle         ###   ########.fr       */
+/*   Created: 2020/10/13 21:58:23 by seungnle          #+#    #+#             */
+/*   Updated: 2020/10/13 22:46:58 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int		i;
+	size_t	new_len;
+	char	*sub;
 
-	i = 0;
-	while (n--)
-	{
-		if (s1[i] != s2[i] || s1[i] == 0 || s2[i] == 0)
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		++i;
-	}
-	return (0);
+	if (!s)
+		return (0);
+	if (ft_strlen(s) < start)
+		return (ft_strdup(""));
+	new_len = ft_strlen(s + start);
+	if (new_len < len)
+		len = new_len;
+	sub = (char *)malloc(sizeof(char) * (len + 1));
+	if (!sub)
+		return (0);
+	ft_strlcpy(sub, s + start, len + 1);
+	return (sub);
 }

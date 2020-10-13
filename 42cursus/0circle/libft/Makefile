@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seungnle <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 01:25:38 by seungnle          #+#    #+#              #
-#    Updated: 2020/10/12 08:02:02 by seungnle         ###   ########.fr        #
+#    Updated: 2020/10/13 22:25:34 by seungnle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,11 @@ FILES		= ft_memset.c \
 				ft_isascii.c \
 				ft_isprint.c \
 				ft_toupper.c \
-				ft_tolower.c
+				ft_tolower.c \
+				ft_calloc.c \
+				ft_strdup.c \
+				ft_substr.c \
+				ft_strjoin.c
 				
 OBJ			= $(FILES:%.c=%.o)
 OBJ_B			= $(FILES_B:%.c=%.o)

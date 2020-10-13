@@ -7,6 +7,6 @@ int dp[1001];
 int main(void)
 {
 	int i;
-	i = isalpha('!');
+	i = isalpha('A');
 	printf("%d\n", i);
 }
