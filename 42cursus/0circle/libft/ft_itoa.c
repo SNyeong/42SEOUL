@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/13 20:49:29 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/15 02:03:34 by seungnle         ###   ########.fr       */
+/*   Created: 2020/10/15 05:15:19 by seungnle          #+#    #+#             */
+/*   Updated: 2020/10/15 05:26:46 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_itoa(int n)
 {
-	void	*a;
+	char	*ret;
+	char	ch;
+	int		i;
 
-	a = (void *)malloc(size * count);
-	if (!a)
-		return (0);
-	ft_bzero(a, size * count);
-	return (a);
+	if (n < 0)
+	{
+		write(1, '-', 1);
+		i = n / 10;
+		ch = '0' - i;
+		write(1, ch, 1);
+	}
+	return (ret);
 }
