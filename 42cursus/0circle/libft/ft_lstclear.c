@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/12 07:56:16 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/16 06:24:11 by seungnle         ###   ########.fr       */
+/*   Created: 2020/10/16 04:00:43 by seungnle          #+#    #+#             */
+/*   Updated: 2020/10/16 06:18:51 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	islow(int c)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	return (c <= 122 && c >= 97);
-}
+	t_list	*cur;
+	t_list	*next;
 
-int	ft_toupper(int c)
-{
-	if (islow(c))
-		return (c - 32);
-	return (c);
+	if (!lst)
+		return ;
+	cur = *lst;
+	while (cur)
+	{
+		next = cur->next;
+		ft_lstdelone(cur, del);
+		cur = next;
+	}
+	*lst = NULL;
 }

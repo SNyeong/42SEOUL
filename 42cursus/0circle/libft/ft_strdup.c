@@ -6,7 +6,7 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 20:56:37 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/13 21:17:34 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/16 06:22:19 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ char	*ft_strdup(const char *s1)
 	int		i;
 
 	len = ft_strlen(s1);
-	ret = (char *)malloc(len + 1);
-	if (!ret)
+	if (!(ret = (char *)ft_calloc(len + 1, sizeof(char))))
 		return (0);
 	i = 0;
 	while (s1[i])

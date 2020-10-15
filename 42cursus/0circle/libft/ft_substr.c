@@ -6,7 +6,7 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 21:58:23 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/13 22:46:58 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/16 06:24:01 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	new_len = ft_strlen(s + start);
 	if (new_len < len)
 		len = new_len;
-	sub = (char *)malloc(sizeof(char) * (len + 1));
-	if (!sub)
+	if (!(sub = (char *)ft_calloc(sizeof(char), (len + 1))))
 		return (0);
 	ft_strlcpy(sub, s + start, len + 1);
 	return (sub);

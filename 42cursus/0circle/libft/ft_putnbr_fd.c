@@ -1,25 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/12 07:56:16 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/16 06:24:11 by seungnle         ###   ########.fr       */
+/*   Created: 2020/10/16 01:42:46 by seungnle          #+#    #+#             */
+/*   Updated: 2020/10/16 01:49:24 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	islow(int c)
+static	void	ft_cal(int n, int fd)
 {
-	return (c <= 122 && c >= 97);
+	char ch;
+
+	if (n == 0)
+		return ;
+	ft_cal(n / 10, fd);
+	ch = '0' + (n % 10);
+	write(fd, &ch, 1);
 }
 
-int	ft_toupper(int c)
+void			ft_putnbr_fd(int n, int fd)
 {
-	if (islow(c))
-		return (c - 32);
-	return (c);
+	char ch;
+
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		ft_cal(-(n / 10), fd);
+		ch = '0' - (n % 10);
+	}
+	else
+	{
+		ft_cal(n / 10, fd);
+		ch = '0' + (n % 10);
+	}
+	write(fd, &ch, 1);
 }

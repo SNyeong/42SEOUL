@@ -6,21 +6,11 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 23:29:12 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/15 04:28:16 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/16 05:23:42 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static	void	m_error(char **s)
-{
-	int i;
-
-	i = 0;
-	while (s[i])
-		free(s[i]);
-	free(s);
-}
 
 static	int		get_len_s(char const *s, char c)
 {
@@ -56,7 +46,7 @@ static	void	get_temp(char **s, int *len, char c)
 		if ((*s)[i] == c)
 			return ;
 		++i;
-		(*len)++;
+		++(*len);
 	}
 }
 
@@ -79,11 +69,10 @@ char			**ft_split(char const *s, char c)
 	while (i < len_s)
 	{
 		get_temp(&temp, &len_t, c);
-		if (!(ret[i] = (char *)ft_calloc(sizeof(char), len_t + 1)))
-			m_error(ret);
+		ret[i] = (char *)ft_calloc(sizeof(char), len_t + 1);
 		ft_strlcpy(ret[i], temp, len_t + 1);
 		++i;
 	}
-	ret[i] = NULL;
+	ret[i] = 0;
 	return (ret);
 }

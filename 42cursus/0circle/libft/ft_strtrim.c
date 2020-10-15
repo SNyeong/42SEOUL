@@ -6,7 +6,7 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 22:55:46 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/13 23:26:42 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/16 06:23:41 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	end = get_end(s1, set);
 	if (start >= end)
 		return (ft_strdup(""));
-	ret = (char *)malloc(sizeof(char) * (end - start + 1));
-	if (!ret)
+	if (!(ret = (char *)ft_calloc(sizeof(char), (end - start + 1))))
 		return (0);
 	ft_strlcpy(ret, s1 + start, end - start + 1);
 	return (ret);

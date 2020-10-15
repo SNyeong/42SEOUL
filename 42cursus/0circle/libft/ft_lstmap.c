@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/12 07:56:16 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/16 06:24:11 by seungnle         ###   ########.fr       */
+/*   Created: 2020/10/16 04:08:07 by seungnle          #+#    #+#             */
+/*   Updated: 2020/10/16 06:19:37 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	islow(int c)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	return (c <= 122 && c >= 97);
-}
+	t_list	*ret;
+	t_list	*new;
 
-int	ft_toupper(int c)
-{
-	if (islow(c))
-		return (c - 32);
-	return (c);
+	if (!lst)
+		return (0);
+	ret = 0;
+	while (lst)
+	{
+		if (!(new = ft_lstnew(f(lst->content))))
+		{
+			ft_lstclear(&ret, del);
+			return (0);
+		}
+		ft_lstadd_back(&ret, new);
+		lst = lst->next;
+	}
+	return (ret);
 }

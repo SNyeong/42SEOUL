@@ -6,19 +6,10 @@ int dp[1001];
 
 int main(void)
 {
-	char **str;
-	char *s = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse";
-	char c = ' ';
-	printf("%s\n", s);
-	str = ft_split(s, c);
-	printf("%s\n", s);
-	int i = 0;
-	while (str[i] != NULL)
+	char **ret =  ft_split("asdfa  sdf  as  d  f", ' ');
+	while (**ret)
 	{
-		printf("%s\n", str[i]);
-		++i;
+		printf("%s\n", ret);
 	}
-	
-	printf("%d\n", i);
 	return (0);
 }
