@@ -6,7 +6,7 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 22:55:46 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/16 06:23:41 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/16 21:51:20 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,15 @@ int		get_st(char const *s1, char const *set)
 
 int		get_end(char const *s1, char const *set)
 {
-	int i;
 	int len;
 
-	i = 0;
 	len = ft_strlen(s1);
-	while (i < len)
+	while (len--)
 	{
-		if (ft_strchr(set, s1[len - i - 1]) == 0)
+		if (ft_strchr(set, s1[len]) == 0)
 			break ;
-		++i;
 	}
-	return (len - i);
+	return (len + 1);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungnle <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 02:36:12 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/09 02:36:13 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/16 21:40:59 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 char	*ft_strnstr(const char *og, const char *cmp, size_t len)
 {
-	size_t	o_len;
-	size_t	c_len;
+	size_t	len_o;
+	size_t	len_c;
 	size_t	size;
 
 	if (*cmp == 0)
 		return ((char *)og);
-	o_len = ft_strlen(og);
-	c_len = ft_strlen(cmp);
-	if (len < c_len || o_len < c_len)
+	len_o = ft_strlen(og);
+	len_c = ft_strlen(cmp);
+	if (len < len_c || len_o < len_c)
 		return (0);
-	if (len < o_len)
+	if (len < len_o)
 		size = len;
 	else
-		size = o_len;
-	while (size-- >= c_len)
+		size = len_o;
+	while (size-- >= len_c)
 	{
-		if (ft_memcmp(og, cmp, c_len) == 0)
+		if (ft_memcmp(og, cmp, len_c) == 0)
 			return ((char *)og);
 		og++;
 	}

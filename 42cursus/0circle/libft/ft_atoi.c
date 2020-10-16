@@ -6,7 +6,7 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 21:29:42 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/13 21:08:18 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/16 20:16:59 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	is_space(char a)
 
 int	ft_atoi(const char *str)
 {
-	int		i;
-	long	sign;
-	long	result;
+	int			i;
+	long long	sign;
+	long long	result;
 
 	i = 0;
 	sign = 1;
@@ -43,5 +43,5 @@ int	ft_atoi(const char *str)
 			return (0);
 		++i;
 	}
-	return (result * sign);
+	return ((int)(result * sign));
 }

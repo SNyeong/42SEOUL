@@ -6,7 +6,7 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 05:15:19 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/16 06:20:10 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/16 20:27:02 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 static	void	ft_cal(char *str, int idx, int nb)
 {
-	if (nb / 10 == 0)
-	{
-		str[idx] = '0' + nb;
+	if (nb == 0)
 		return ;
-	}
 	ft_cal(str, idx - 1, nb / 10);
 	str[idx] = '0' + (nb % 10);
 }
@@ -48,14 +45,12 @@ char			*ft_itoa(int n)
 	if (n < 0)
 	{
 		ret[0] = '-';
-		if (i > 2)
-			ft_cal(ret, i - 2, -(n / 10));
+		ft_cal(ret, i - 2, -(n / 10));
 		ret[i - 1] = '0' - (n % 10);
 	}
 	else
 	{
-		if (i > 1)
-			ft_cal(ret, i - 2, n / 10);
+		ft_cal(ret, i - 2, n / 10);
 		ret[i - 1] = '0' + (n % 10);
 	}
 	ret[i] = '\0';

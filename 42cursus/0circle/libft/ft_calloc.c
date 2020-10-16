@@ -6,7 +6,7 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 20:49:29 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/15 02:03:34 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/16 20:14:11 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*a;
 
-	a = (void *)malloc(size * count);
-	if (!a)
+	if (!(a = (void *)malloc(size * count)))
 		return (0);
-	ft_bzero(a, size * count);
+	ft_memset(a, 0x00, size * count);
 	return (a);
 }

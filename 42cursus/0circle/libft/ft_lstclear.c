@@ -6,7 +6,7 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 04:00:43 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/16 06:18:51 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/16 20:36:05 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		ft_lstdelone(cur, del);
 		cur = next;
 	}
-	*lst = NULL;
+	*lst = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 23:29:12 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/16 05:23:42 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/16 21:30:05 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,23 @@ static	int		get_len_s(char const *s, char c)
 	return (cnt);
 }
 
-static	void	get_temp(char **s, int *len, char c)
+static	char	*get_temp(char *s, int *len, char c)
 {
 	int i;
 
-	*s = *s + *len;
+	s = s + *len;
 	*len = 0;
 	i = 0;
-	while (**s && **s == c)
-		++(*s);
-	while ((*s)[i])
+	while (*s && *s == c)
+		++s;
+	while (s[i])
 	{
-		if ((*s)[i] == c)
-			return ;
+		if (s[i] == c)
+			break ;
 		++i;
-		++(*len);
+		++*len;
 	}
+	return (s);
 }
 
 char			**ft_split(char const *s, char c)
@@ -68,7 +69,7 @@ char			**ft_split(char const *s, char c)
 	i = 0;
 	while (i < len_s)
 	{
-		get_temp(&temp, &len_t, c);
+		temp = get_temp(temp, &len_t, c);
 		ret[i] = (char *)ft_calloc(sizeof(char), len_t + 1);
 		ft_strlcpy(ret[i], temp, len_t + 1);
 		++i;
