@@ -6,7 +6,7 @@
 #    By: seungnle <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 01:25:38 by seungnle          #+#    #+#              #
-#    Updated: 2020/10/21 15:56:42 by seungnle         ###   ########.fr        #
+#    Updated: 2020/10/21 16:01:09 by seungnle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,8 +73,8 @@ $(OBJ): $(FILES)
 $(OBJ_B): $(FILES_B)
 	gcc $(CFLAGS) $(FILES_B)
 
-bonus: all $(OBJ_B)
-	ar rcs $(NAME) $(OBJ_B)
+bonus: $(OBJ) $(OBJ_B)
+	ar rcs $(NAME) $(OBJ) $(OBJ_B)
 
 clean:
 	rm -f $(OBJ) $(OBJ_B)
