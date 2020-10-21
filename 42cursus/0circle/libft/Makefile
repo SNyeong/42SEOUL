@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: seungnle <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 01:25:38 by seungnle          #+#    #+#              #
-#    Updated: 2020/10/16 05:46:23 by seungnle         ###   ########.fr        #
+#    Updated: 2020/10/21 15:56:42 by seungnle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,10 @@ $(NAME): $(OBJ)
 $(OBJ): $(FILES)
 	gcc $(CFLAGS) $(FILES)
 
-bonus: $(OBJ_B)
+$(OBJ_B): $(FILES_B)
+	gcc $(CFLAGS) $(FILES_B)
+
+bonus: all $(OBJ_B)
 	ar rcs $(NAME) $(OBJ_B)
 
 clean:
