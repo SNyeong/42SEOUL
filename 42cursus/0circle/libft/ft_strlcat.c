@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungnle <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 01:54:35 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/09 01:54:37 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/24 17:18:17 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	dstlen;
 	size_t	srclen;
 	size_t	i;
-
 	dstlen = ft_strlen(dst);
 	srclen = ft_strlen(src);
 	if (dstsize < dstlen + 1)

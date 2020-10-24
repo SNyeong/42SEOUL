@@ -6,7 +6,7 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 19:50:46 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/24 13:47:09 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/24 14:33:53 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	nl_idx(char *a)
 
 int	my_split(char **storage, char **line, int idx)
 {
-	char *temp;
+	char	*temp;
 
 	(*storage)[idx] = 0;
 	*line = my_dup(*storage);
