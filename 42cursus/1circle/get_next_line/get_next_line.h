@@ -6,7 +6,7 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 19:32:43 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/23 11:11:42 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/24 12:58:58 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 # include <limits.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32
+#  define BUFFER_SIZE 40
 # endif
 
 int		get_next_line(int fd, char **line);
-size_t	ft_strlen(char *s);
-size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strdup(char *s1);
+int		my_len(char *a);
+void	my_cpy(char *s1, char *s2);
+char	*my_join(char *s1, char *s2);
+char	*my_dup(char *s);
 
 #endif
