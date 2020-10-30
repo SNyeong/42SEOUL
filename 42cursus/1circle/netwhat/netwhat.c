@@ -2,7 +2,7 @@
 
 int main()
 {
-	int i = 32 - 25;
+	int i = 32 - 13;
 	int ret = 1;
 
 	for(int ti = 0; ti < i; ti++)
@@ -12,8 +12,8 @@ int main()
 	ret = ret - 2;
 	printf("%d\n\n\n", ret);
 
-	int og = 170;
-	int ma = 128;
+	int og = 213;
+	int ma = 4;
 	int start, end;
 
 	start = (og / ma) * ma;
@@ -32,4 +32,3 @@ int main()
 7 15 23 31 ==== 254 2
 8 16 24 32 ==== 255 1
 */
-
