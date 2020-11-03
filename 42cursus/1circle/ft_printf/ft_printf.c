@@ -6,11 +6,12 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 20:27:23 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/30 21:51:39 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/11/03 21:53:03 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 void ft_putchar(char ch)
 {
@@ -51,9 +52,14 @@ int	ft_pirntf(const char *str, ...)
 //%가 있으면 뒷글자들 확인
 //arg number 확인
 //flag 문자 확인
+//- 0 . *
+//bonus # +
 //width 문자 확인
 //precision 문자 확인
+//bonus l ll h hh
 //type 문자 확인
+//c s p d i u x X %
+//bounus n f g e
 //상기 확인한 조건에 맞춰 출력
 //반복
 
@@ -63,8 +69,10 @@ int	ft_pirntf(const char *str, ...)
 
 int main()
 {
-	char *str = "abcd %d\na";
+	char *str = "abcd %ld\na";
 
-	ft_pirntf(str, -123);
+	ft_pirntf(str, 'c');
+	puts("\n");
+	printf(str, 'c');
 	return (0);
 }
