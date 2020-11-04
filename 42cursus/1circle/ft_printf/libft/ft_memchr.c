@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 20:48:54 by seungnle          #+#    #+#             */
-/*   Updated: 2020/11/04 22:23:03 by seungnle         ###   ########.fr       */
+/*   Created: 2020/10/08 04:11:56 by seungnle          #+#    #+#             */
+/*   Updated: 2020/10/16 21:05:27 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	unsigned char	*a;
+	unsigned char	b;
 
-int		ft_pirntf(const char *str, ...);
-
-#endif
+	a = (unsigned char *)s;
+	b = (unsigned char)c;
+	while (n--)
+	{
+		if (*a++ == b)
+			return (--a);
+	}
+	return (0);
+}

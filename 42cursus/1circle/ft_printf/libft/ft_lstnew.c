@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 20:48:54 by seungnle          #+#    #+#             */
-/*   Updated: 2020/11/04 22:23:03 by seungnle         ###   ########.fr       */
+/*   Created: 2020/10/16 02:13:07 by seungnle          #+#    #+#             */
+/*   Updated: 2020/10/16 20:32:47 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*ret;
 
-int		ft_pirntf(const char *str, ...);
-
-#endif
+	if (!(ret = (t_list *)ft_calloc(1, sizeof(t_list))))
+		return (0);
+	ret->content = content;
+	ret->next = NULL;
+	return (ret);
+}

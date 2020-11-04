@@ -1,23 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 20:48:54 by seungnle          #+#    #+#             */
-/*   Updated: 2020/11/04 22:23:03 by seungnle         ###   ########.fr       */
+/*   Created: 2020/10/16 01:42:46 by seungnle          #+#    #+#             */
+/*   Updated: 2020/11/04 22:20:46 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
+static	void	ft_cal(int n, int fd)
+{
+	char ch;
 
-int		ft_pirntf(const char *str, ...);
+	if (n == 0)
+		return ;
+	ft_cal(n / 10, fd);
+	ch = '0' + (n % 10);
+	write(fd, &ch, 1);
+}
 
-#endif
+void			ft_putnbr_fd(int n, int fd)
+{
+	char ch;
+
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		ft_cal(-(n / 10), fd);
+		ch = '0' - (n % 10);
+	}
+	else
+	{
+		ft_cal(n / 10, fd);
+		ch = '0' + (n % 10);
+	}
+	write(fd, &ch, 1);
+}

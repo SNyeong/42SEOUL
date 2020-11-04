@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 20:48:54 by seungnle          #+#    #+#             */
-/*   Updated: 2020/11/04 22:23:03 by seungnle         ###   ########.fr       */
+/*   Created: 2020/10/12 07:58:58 by seungnle          #+#    #+#             */
+/*   Updated: 2020/10/16 21:52:49 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
+static	int	isup(int c)
+{
+	return (c <= 90 && c >= 65);
+}
 
-int		ft_pirntf(const char *str, ...);
-
-#endif
+int			ft_tolower(int c)
+{
+	if (isup(c))
+		return (c + 32);
+	return (c);
+}

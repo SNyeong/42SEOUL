@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: seungnle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/09 01:02:47 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/30 19:11:03 by seungnle         ###   ########.fr       */
+/*   Created: 2020/10/05 19:45:03 by seungnle          #+#    #+#             */
+/*   Updated: 2020/10/05 19:45:09 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void	*ft_memset(void *ptr, int num, size_t len)
 {
-	size_t	i;
+	unsigned char *temp;
 
-	i = 0;
-	while (s[i])
-		++i;
-	return (i);
+	temp = (unsigned char *)ptr;
+	while (len--)
+		*temp++ = num;
+	return (ptr);
 }

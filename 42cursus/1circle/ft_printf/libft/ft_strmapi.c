@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/05 19:45:03 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/30 19:14:24 by seungnle         ###   ########.fr       */
+/*   Created: 2020/10/16 01:17:48 by seungnle          #+#    #+#             */
+/*   Updated: 2020/10/16 06:22:47 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	*ft_memset(void *ptr, int num, size_t len)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned char *temp;
+	char	*ret;
+	int		i;
 
-	temp = (unsigned char *)ptr;
-	while (len--)
-		*temp++ = num;
-	return (ptr);
+	if (!s || !f)
+		return (0);
+	i = 0;
+	if (!(ret = (char *)ft_calloc(sizeof(char), (ft_strlen(s) + 1))))
+		return (0);
+	while (s[i])
+	{
+		ret[i] = f(i, s[i]);
+		++i;
+	}
+	ret[i] = '\0';
+	return (ret);
 }

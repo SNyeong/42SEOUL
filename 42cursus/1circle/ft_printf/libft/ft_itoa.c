@@ -6,11 +6,11 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 05:15:19 by seungnle          #+#    #+#             */
-/*   Updated: 2020/10/30 19:08:46 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/10/16 20:27:02 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static	void	ft_cal(char *str, int idx, int nb)
 {
