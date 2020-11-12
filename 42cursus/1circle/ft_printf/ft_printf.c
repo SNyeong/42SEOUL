@@ -6,7 +6,7 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 20:27:23 by seungnle          #+#    #+#             */
-/*   Updated: 2020/11/05 04:55:01 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/11/12 20:40:02 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,148 +14,143 @@
 #include <stdio.h>
 #include <stddef.h>
 
-int	ft_pirntf(const char *str, ...)
+int			check_len(char *str, va_list ap, t_option option)
 {
-	va_list	ap;
-	char	ch;
-	int		for_n;
-
-	va_start(ap, str);
-//str을 한글자씩 읽어서 %가 없으면 그냥 한글자씩 출력
-
-//%가 있으면 뒷글자들 확인
-//flag 문자 확인
-//-(왼쪽정렬) 0() . *
-//bonus # +b
-//width 문자 확인
-//크기 문자 확인
-//bonus modifier 확인
-//l(long(d i) or u long(o u x X)) ll(long long(d i) or u long long(o u x X)) h(short(d i) or u short(o u x X)) hh(char(d i) or u char(o u x X))
-//type 문자 확인
-//c s p d i u x X %
-//bounus n f g e
-//상기 확인한 조건에 맞춰 출력
-//반복
-	while (*str)
+	if (*str == 'h')
 	{
-		if (*str != '%')
+		++str;
+		if (*str == 'h')
 		{
-			ft_putchar_fd(*str, 1);
+			option.o_len = 1;
 			++str;
 		}
 		else
-		{
-			++str;
-			if (*str == 'c' || *str == '%')
-			{
-				ft_putchar_fd(va_arg(ap, int), 1);
-				++str;
-			}
-			else if (*str == 's')
-			{
-				ft_putstr_fd(va_arg(ap, char *), 1);
-				++str;
-			}
-			else if (*str == 'p')
-			{
-				++str;
-			}
-			else if (*str == 'd')
-			{
-				ft_putstr_fd(ft_itoa(va_arg(ap, int)), 1);
-				++str;
-			}
-			else if (*str == 'i')
-			{
-				++str;
-			}
-			else if (*str == 'u')
-			{
-				++str;
-			}
-			else if (*str == 'x')
-			{
-				++str;
-			}
-			else if (*str == 'X')
-			{
-				++str;
-			}
-			else if (*str == 'n')
-			{
-				++str;
-			}
-			else if (*str == 'f')
-			{
-				++str;
-			}
-			else if (*str == 'g')
-			{
-				++str;
-			}
-			else if (*str == 'e')
-			{
-				++str;
-			}
-		}
-		
+			option.o_len = 2;
 	}
-	
-
-
-	va_end(ap);
-	return (0);
+	else if (*str == 'l')
+	{
+		++str;
+		if (*str == 'l')
+		{
+			option.o_len = 3;
+			++str;
+		}
+		else
+			option.o_len = 4;
+	}
+	return (check_type(str, ap, option));
 }
 
-int main()
+int			check_precision(char *str, va_list ap, t_option option)
 {
-	printf("================type====================\n");
-    printf("12. 문자 출력: %c \n", 'a');
-    printf("13. 문자열 출력: %s \n", "Hello");
-    printf("15. 메모리 주소 출력: %p \n", "Hello");
-    printf("1. 십진수로 출력: %d \n", 123);
-    printf("2. 부호있는 십진수로 출력: %i \n", 123);
-    
-    printf("4. 부호없는 십진수로 출력: %u \n", 123);
-    printf("5. 부호없는 16진수로 출력(소문자): %x \n", 123);
-    printf("6. 부호없는 16진수로 출력(대문자): %X \n", 123);
-    printf("7. 부동 소수점 표기로 출력: %f \n", 123.45);
-    printf("8. 지수형 표기로 출력(소문자): %e  \n", 123.45);
-    
-    printf("10. 간단한 표기로 출력(소문자): %g \n", 123.45);
-    
-    printf("14. 퍼센트 문자 출력: %%\n");
-    
- 
-    printf("================flag====================\n");
-    printf("1. flag 지정하지 않고 10진수로 출력: %8d \n", 123);
-    printf("2. flag에 -를 지정하여 10진수로 출력: %-8d \n", 123);
-    printf("3. flag에 +를 지정하여 10진수로 출력: %+d\n", 123);
-    printf("4. flag 지정하지 않고 8진수로 출력: %o\n", 123);
-    printf("5. flag에 #을 지정하여 8진수로 출력: %#o\n", 123);
-    printf("6. flag 지정하지 않고 16진수로 출력:%X\n", 123);
-    printf("7. flag에 #을 지정하여 16진수로 출력:%#X\n", 123);
- 
-    printf("===========width와 .prec, modifier ======\n");
-    printf("1.flag #을 지정하여 16진수로 출력(대문자): %#X \n", 0x123456);
-    printf("2.flag #, modifier h를 지정하여 16진수로 출력(대문자): %#hX \n", (unsigned short)0x123456);
-    printf("3.flag #, width 12 지정하여 16진수로 출력(대문자): %#12X \n", 0x123456);
-    printf("4.flag #, width 012 지정하여 16진수로 출력(대문자): %#012X \n", 0x123456);
-    printf("5. .prec를 .3을 지정하여 부동 소수점 표기로 출력: %.3f \n", 123.456789);
- 
- 
-    printf("===========1234567890123 출력 ===========\n");
-    printf("1.hhd 사용: %hhd\n", (char)1234567890123);
-    printf("2.hd 사용:%hd\n", (short)1234567890123);
-    printf("3.ld 사용:%ld\n", 1234567890123);
-    printf("4.lld 사용:%lld\n", (long long)1234567890123);
-	
-	int a = 0, b = 0;
-	
-	printf("===========%%n 출력 ===========\n");
-	printf("1%n\n", &a);
-	printf("a = %d\n", a);
-	printf("123%n\na = %d\n456%n\n", &a, a, &b);
-	printf("a = %d, b = %d\n", a, b);
-	return (0);
+	if (*str == '.')
+	{
+		++str;
+		while (ft_isnum(*str) || *str == '*')
+		{
+			if (ft_isnum(*str))
+			{
+				option.o_precision = 0;
+				while (ft_isnum(*str))
+					option.o_precision = option.o_precision * 10
+					+ (*(str++) - '0');
+			}
+			if (*str++ == '*')
+				option.o_precision = va_arg(ap, int);
+		}
+	}
+	return (check_len(str, ap, option));
+}
+
+int			check_width(char *str, va_list ap, t_option option)
+{
+	while (ft_isnum(*str) || *str == '*')
+	{
+		if (ft_isnum(*str))
+		{
+			option.o_width = 0;
+			while (ft_isnum(*str))
+				option.o_width = option.o_width * 10 + (*(str++) - '0');
+		}
+		if (*str++ == '*')
+			option.o_width = va_arg(ap, int);
+	}
+	return (check_precision(str, ap, option));
+}
+
+int			check_flags(char *str, va_list ap)
+{
+	t_option	option;
+
+	option = init_option(option);
+	while (*str == '+' || *str == ' ' || *str == '#'
+	|| *str == '-' || *str == '0')
+	{
+		if (*str == '#')
+			option.o_flags[0] = 1;
+		else if (*str == '+')
+			option.o_flags[1] = 1;
+		else if (*str == ' ')
+			option.o_flags[2] = 1;
+		else if (*str == '-')
+			option.o_flags[3] = 1;
+		else if (*str == '0')
+			option.o_flags[4] = 1;
+		++str;
+	}
+	return (check_width(str, ap, option));
+}
+
+int			ft_char_count(char c, int fd)
+{
+	ft_putchar_fd(c, fd);
+	return (1);
+}
+
+t_option	init_option(t_option option)
+{
+	int	a;
+
+	a = -1;
+	while (++a < 5)
+	{
+		option.o_flags[a] = 0;
+	}
+	option.o_precision = -1;
+	option.o_width = -1;
+	option.o_len = 0;
+	option.o_type = 0;
+}
+
+int			ft_parse(char *str, va_list ap)
+{
+	int count;
+
+	count = 0;
+	while (*str)
+	{
+		while (*str && *str != '%')
+			count += ft_char_count(*str++, 1);
+		if (*str)
+		{
+			++str;
+			if (*str == '%')
+			{
+				count += ft_char_count(*str++, 1);
+			}
+			count += check_flags(str, ap);
+		}
+	}
+	return (count);
+}
+
+int			ft_pirntf(const char *str, ...)
+{
+	va_list	ap;
+	int		count;
+
+	va_start(ap, str);
+	count = ft_parse((char *)str, ap);
+	va_end(ap);
+	return (count);
 }
