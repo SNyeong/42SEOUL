@@ -6,13 +6,25 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 20:27:23 by seungnle          #+#    #+#             */
-/*   Updated: 2020/11/12 20:40:02 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/11/14 21:53:22 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 #include <stddef.h>
+
+int			check_type(char *str, va_list ap, t_option option)
+{
+	int a;
+
+	if (*str == 'c')
+		return (ft_char_count((char)va_arg(ap, int)));
+	else if (*str == 's')
+		return (ft_str_count(va_arg(ap, char *)));
+	a = option.o_len;
+	return (0);
+}
 
 int			check_len(char *str, va_list ap, t_option option)
 {
@@ -46,12 +58,12 @@ int			check_precision(char *str, va_list ap, t_option option)
 	if (*str == '.')
 	{
 		++str;
-		while (ft_isnum(*str) || *str == '*')
+		while (ft_isdigit(*str) || *str == '*')
 		{
-			if (ft_isnum(*str))
+			if (ft_isdigit(*str))
 			{
 				option.o_precision = 0;
-				while (ft_isnum(*str))
+				while (ft_isdigit(*str))
 					option.o_precision = option.o_precision * 10
 					+ (*(str++) - '0');
 			}
@@ -64,12 +76,12 @@ int			check_precision(char *str, va_list ap, t_option option)
 
 int			check_width(char *str, va_list ap, t_option option)
 {
-	while (ft_isnum(*str) || *str == '*')
+	while (ft_isdigit(*str) || *str == '*')
 	{
-		if (ft_isnum(*str))
+		if (ft_isdigit(*str))
 		{
 			option.o_width = 0;
-			while (ft_isnum(*str))
+			while (ft_isdigit(*str))
 				option.o_width = option.o_width * 10 + (*(str++) - '0');
 		}
 		if (*str++ == '*')
@@ -82,7 +94,7 @@ int			check_flags(char *str, va_list ap)
 {
 	t_option	option;
 
-	option = init_option(option);
+	option = init_option();
 	while (*str == '+' || *str == ' ' || *str == '#'
 	|| *str == '-' || *str == '0')
 	{
@@ -101,15 +113,22 @@ int			check_flags(char *str, va_list ap)
 	return (check_width(str, ap, option));
 }
 
-int			ft_char_count(char c, int fd)
+int			ft_char_count(char c)
 {
-	ft_putchar_fd(c, fd);
+	ft_putchar_fd(c, 1);
 	return (1);
 }
 
-t_option	init_option(t_option option)
+int			ft_str_count(char *str)
 {
-	int	a;
+	ft_putstr_fd(str, 1);
+	return (ft_strlen(str));
+}
+
+t_option	init_option(void)
+{
+	int			a;
+	t_option	option;
 
 	a = -1;
 	while (++a < 5)
@@ -120,31 +139,39 @@ t_option	init_option(t_option option)
 	option.o_width = -1;
 	option.o_len = 0;
 	option.o_type = 0;
+	return (option);
 }
 
 int			ft_parse(char *str, va_list ap)
 {
 	int count;
+	int tmp;
 
 	count = 0;
+	tmp = 0;
 	while (*str)
 	{
 		while (*str && *str != '%')
-			count += ft_char_count(*str++, 1);
+			count += ft_char_count(*str++);
 		if (*str)
 		{
 			++str;
 			if (*str == '%')
 			{
-				count += ft_char_count(*str++, 1);
+				count += ft_char_count(*str);
 			}
-			count += check_flags(str, ap);
+			else
+			{
+				tmp = check_flags(str, ap);
+				str += tmp;
+				count += tmp;
+			}
 		}
 	}
 	return (count);
 }
 
-int			ft_pirntf(const char *str, ...)
+int			ft_printf(const char *str, ...)
 {
 	va_list	ap;
 	int		count;
@@ -153,4 +180,18 @@ int			ft_pirntf(const char *str, ...)
 	count = ft_parse((char *)str, ap);
 	va_end(ap);
 	return (count);
+}
+
+int			main(void)
+{
+	char	c;
+	char	*str;
+	int		a;
+
+	a = 0;
+	c = 'c';
+	str = "str";
+	a = ft_printf("%c\n%s\n%c\n%s\n%c\n", c, str, c, str, c);
+	printf("%d\n", a);
+	return (0);
 }
