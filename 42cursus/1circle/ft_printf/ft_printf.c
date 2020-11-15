@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: seungnle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 20:27:23 by seungnle          #+#    #+#             */
-/*   Updated: 2020/11/14 21:53:22 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/11/15 22:29:06 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,38 @@
 #include <stdio.h>
 #include <stddef.h>
 
-int			check_type(char *str, va_list ap, t_option option)
+int			check_type(char **str, va_list ap, t_option option)
 {
 	int a;
 
-	if (*str == 'c')
+	if (**str == 'c')
 		return (ft_char_count((char)va_arg(ap, int)));
-	else if (*str == 's')
+	else if (**str == 's')
 		return (ft_str_count(va_arg(ap, char *)));
 	a = option.o_len;
 	return (0);
 }
 
-int			check_len(char *str, va_list ap, t_option option)
+int			check_len(char **str, va_list ap, t_option option)
 {
-	if (*str == 'h')
+	if (**str == 'h')
 	{
-		++str;
-		if (*str == 'h')
+		++(*str);
+		if (**str == 'h')
 		{
 			option.o_len = 1;
-			++str;
+			++(*str);
 		}
 		else
 			option.o_len = 2;
 	}
-	else if (*str == 'l')
+	else if (**str == 'l')
 	{
-		++str;
-		if (*str == 'l')
+		++(*str);
+		if (**str == 'l')
 		{
 			option.o_len = 3;
-			++str;
+			++(*str);
 		}
 		else
 			option.o_len = 4;
@@ -53,62 +53,62 @@ int			check_len(char *str, va_list ap, t_option option)
 	return (check_type(str, ap, option));
 }
 
-int			check_precision(char *str, va_list ap, t_option option)
+int			check_precision(char **str, va_list ap, t_option option)
 {
-	if (*str == '.')
+	if (**str == '.')
 	{
 		++str;
-		while (ft_isdigit(*str) || *str == '*')
+		while (ft_isdigit(**str) || **str == '*')
 		{
-			if (ft_isdigit(*str))
+			if (ft_isdigit(**str))
 			{
 				option.o_precision = 0;
-				while (ft_isdigit(*str))
+				while (ft_isdigit(**str))
 					option.o_precision = option.o_precision * 10
-					+ (*(str++) - '0');
+					+ (*(*str++) - '0');
 			}
-			if (*str++ == '*')
+			if (**str++ == '*')
 				option.o_precision = va_arg(ap, int);
 		}
 	}
 	return (check_len(str, ap, option));
 }
 
-int			check_width(char *str, va_list ap, t_option option)
+int			check_width(char **str, va_list ap, t_option option)
 {
-	while (ft_isdigit(*str) || *str == '*')
+	while (ft_isdigit(**str) || **str == '*')
 	{
-		if (ft_isdigit(*str))
+		if (ft_isdigit(**str))
 		{
 			option.o_width = 0;
-			while (ft_isdigit(*str))
-				option.o_width = option.o_width * 10 + (*(str++) - '0');
+			while (ft_isdigit(**str))
+				option.o_width = option.o_width * 10 + (*(*str++) - '0');
 		}
-		if (*str++ == '*')
+		if (**str++ == '*')
 			option.o_width = va_arg(ap, int);
 	}
 	return (check_precision(str, ap, option));
 }
 
-int			check_flags(char *str, va_list ap)
+int			check_flags(char **str, va_list ap)
 {
 	t_option	option;
 
 	option = init_option();
-	while (*str == '+' || *str == ' ' || *str == '#'
-	|| *str == '-' || *str == '0')
+	while (**str == '+' || **str == ' ' || **str == '#'
+	|| **str == '-' || **str == '0')
 	{
-		if (*str == '#')
+		if (**str == '#')
 			option.o_flags[0] = 1;
-		else if (*str == '+')
+		else if (**str == '+')
 			option.o_flags[1] = 1;
-		else if (*str == ' ')
+		else if (**str == ' ')
 			option.o_flags[2] = 1;
-		else if (*str == '-')
+		else if (**str == '-')
 			option.o_flags[3] = 1;
-		else if (*str == '0')
+		else if (**str == '0')
 			option.o_flags[4] = 1;
-		++str;
+		++(*str);
 	}
 	return (check_width(str, ap, option));
 }
@@ -158,12 +158,11 @@ int			ft_parse(char *str, va_list ap)
 			++str;
 			if (*str == '%')
 			{
-				count += ft_char_count(*str);
+				count += ft_char_count(*str++);
 			}
 			else
 			{
-				tmp = check_flags(str, ap);
-				str += tmp;
+				tmp = check_flags(&str, ap);
 				count += tmp;
 			}
 		}
@@ -189,9 +188,9 @@ int			main(void)
 	int		a;
 
 	a = 0;
-	c = 'c';
-	str = "str";
-	a = ft_printf("%c\n%s\n%c\n%s\n%c\n", c, str, c, str, c);
+	c = '0';
+	str = "123";
+	a = ft_printf("%5c\n%s\n%c\n%s\n%c\n", c, str, c, str, c);
 	printf("%d\n", a);
 	return (0);
 }
