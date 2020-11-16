@@ -6,7 +6,7 @@
 /*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 20:27:23 by seungnle          #+#    #+#             */
-/*   Updated: 2020/11/16 22:03:52 by seungnle         ###   ########.fr       */
+/*   Updated: 2020/11/17 01:04:28 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,11 +187,11 @@ int			main(void)
 	char	*str;
 	int		a;
 
-	a = 10;
-	c = '0';
-	str = "321";
-	//a = ft_printf("%5c\n%s\n%c\n%s\n%c\n", c, str, c, str, c);
-	printf("%-0d\n", a);
-	printf("%d\n", (int)__LONG_LONG_MAX__);
+	c = 'c';
+	a = 1;
+	str = (char *)malloc(20);
+	str = "123456789\0";
+	while (1)
+		;
 	return (0);
 }
