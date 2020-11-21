@@ -192,3 +192,13 @@ int			test1(char **str)
 	++*str;
 	return (test2(str));
 }
+
+int			main(void)
+{
+	char	*str;
+
+	str = "0123456789";
+	test1(&str);
+	printf("%s", str);
+	return (0);
+}
