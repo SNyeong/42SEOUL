@@ -197,6 +197,8 @@ int			main(void)
 {
 	char	*str;
 
+	str = malloc(20);
+	free(str);
 	str = "0123456789";
 	test1(&str);
 	printf("%s", str);
