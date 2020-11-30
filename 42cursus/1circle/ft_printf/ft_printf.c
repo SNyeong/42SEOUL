@@ -16,12 +16,16 @@
 
 int			check_type(char **str, va_list ap, t_option option)
 {
-	int a;
+	int		count;
+	int		a;
 
 	if (**str == 'c')
 		return (ft_char_count((char)va_arg(ap, int)));
 	else if (**str == 's')
+	{
+		++*str;
 		return (ft_str_count(va_arg(ap, char *)));
+	}
 	a = option.len;
 	return (0);
 }
@@ -142,13 +146,33 @@ t_option	init_option(void)
 	return (option);
 }
 
+int			count_n(char *str)
+{
+	int	count;
+
+	while (*str && *(str + 1))
+	{
+		if (*str == '%' && *(str + 1) == 'n')
+			++count;
+		++str;
+	}
+	return (count);
+}
+
 int			ft_parse(char *str, va_list ap)
 {
-	int count;
-	int tmp;
+	int		count;
+	int		*n_arr;
+	void	**p_arr;
+	int		n_count;
 
+	n_count = count_n(str);
+	n_arr = (int *)malloc(sizeof(int) * (n_count + 1));
+	p_arr = (void **)malloc(sizeof(void *) * (n_count + 1));
+	n_arr[n_count] = '\0';
+	p_arr[n_count] = 0;
 	count = 0;
-	tmp = 0;
+	n_count = 0;
 	while (*str)
 	{
 		while (*str && *str != '%')
@@ -157,16 +181,20 @@ int			ft_parse(char *str, va_list ap)
 		{
 			++str;
 			if (*str == '%')
-			{
 				count += ft_char_count(*str++);
+			else if (*str++ == 'n')
+			{
+				*n_arr++ = count;
+				*p_arr++ = va_arg(ap, void *);
 			}
 			else
-			{
-				tmp = check_flags(&str, ap);
-				count += tmp;
-			}
+				count += check_flags(&str, ap);
 		}
 	}
+	if (n_arr)
+		free(n_arr);
+	if (p_arr)
+		free(p_arr);
 	return (count);
 }
 
@@ -174,10 +202,17 @@ int			ft_printf(const char *str, ...)
 {
 	va_list	ap;
 	int		count;
+	char	*s;
 
-	va_start(ap, str);
-	count = ft_parse((char *)str, ap);
-	va_end(ap);
+	s = (char *)str;
+	if (!ft_strchr(s, '%'))
+		ft_putstr_fd(s, 1);
+	else
+	{
+		va_start(ap, str);
+		count = ft_parse(s, ap);
+		va_end(ap);
+	}
 	return (count);
 }
 
@@ -196,11 +231,11 @@ int			test1(char **str)
 int			main(void)
 {
 	char	*str;
+	int		a;
 
-	str = malloc(20);
-	free(str);
+	a = 12;
 	str = "0123456789";
-	test1(&str);
-	printf("%s", str);
+	ft_printf("ab%nc%s\n", &a, str);
+	printf("%d\n", a);
 	return (0);
 }
