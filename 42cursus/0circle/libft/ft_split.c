@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungnle <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 23:29:12 by seungnle          #+#    #+#             */
-/*   Updated: 2020/11/14 14:21:22 by seungnle         ###   ########.fr       */
+/*   Updated: 2021/01/09 11:34:36 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static	char	*get_temp(char *s, int *len, char c)
 	return (s);
 }
 
-char			**ft_split(char const *s, char c)
+char			**ft_split_0(char const *s, char c)
 {
 	char	**ret;
 	char	*temp;
@@ -75,5 +75,34 @@ char			**ft_split(char const *s, char c)
 		++i;
 	}
 	ret[i] = 0;
+	return (ret);
+}
+
+char			**ft_split(char const *s, char c)
+{
+	char	**ret;
+	int		idx;
+	int		len;
+
+	idx = 0;
+	while (*s)
+		if (*s++ != c && ((*s) == c || !*s))
+			idx++;
+	ret = (char **)ft_calloc(sizeof(char *), (idx + 1));
+	ret[idx--] = 0;
+	while (*--s && idx >= 0)
+	{
+		len = 0;
+		while (*s == c)
+			s--;
+		while (*s && *s != c)
+		{
+			s--;
+			len++;
+		}
+		ret[idx] = (char *)ft_calloc(sizeof(char), len + 1);
+		ft_strlcpy(ret[idx--], (const char *)(++s), len + 1);
+	}
+	++s;
 	return (ret);
 }

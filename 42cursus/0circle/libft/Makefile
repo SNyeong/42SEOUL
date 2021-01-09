@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seungnle <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/08 01:25:38 by seungnle          #+#    #+#              #
-#    Updated: 2020/11/14 14:22:01 by seungnle         ###   ########.fr        #
+#    Updated: 2021/01/09 12:03:02 by seungnle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME		= libft.a
+CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -c
 FILES		= ft_memset.c \
 				ft_bzero.c \
@@ -58,7 +59,7 @@ FILES_B		=	ft_lstnew.c \
 				ft_lstclear.c \
 				ft_lstiter.c \
 				ft_lstmap.c
-				
+
 OBJ			= $(FILES:%.c=%.o)
 OBJ_B			= $(FILES_B:%.c=%.o)
 
@@ -83,5 +84,9 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+so:
+	$(CC) -fPIC $(CFLAGS) $(FILES)
+	gcc -shared -o libft.so $(OBJ)
 
 .PHONY: clean fclean all re bonus
