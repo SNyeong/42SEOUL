@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: seungnle <seungnle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 20:48:54 by seungnle          #+#    #+#             */
-/*   Updated: 2020/11/19 05:03:11 by seungnle         ###   ########.fr       */
+/*   Updated: 2021/04/04 05:55:06 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,36 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 
+# define TYPE "cspdiuxX%%"
+
 typedef struct	s_option
 {
-	int		flags[5];
+	int		minus;
+	int		zero;
 	int		width;
 	int		precision;
-	int		len;
 	char	type;
-
-	int		n_idx;
-	int		*n_value;
-	void	**n_addr;
+	int		base;
+	int		sign;
 }				t_option;
 
 int				ft_printf(const char *str, ...);
 int				ft_parse(char *str, va_list ap);
-int				check_flags(char **str, va_list ap);
-int				check_width(char **str, va_list ap, t_option option);
-int				check_precision(char **str, va_list ap, t_option option);
-int				check_len(char **str, va_list ap, t_option option);
-int				check_type(char **str, va_list ap, t_option option);
-t_option		init_option(void);
-int				ft_char_count(char c);
-int				ft_str_count(char *str);
+void			check_flags(char *str, va_list ap, t_option *option, int idx);
+void			init_option(t_option *option);
+void			check_option(t_option *option);
+int				ft_print_char(int c, t_option *option);
+int				ft_put_char_w(int width, int zero);
+int				ft_print_str(char *str, t_option *option);
+char			*ft_set_str(char *str, int len);
+int				ft_put_str_w(char **str, t_option *option);
+int				ft_print_nb(unsigned long long nb, t_option *option);
+char			*ft_set_nb(unsigned long long nb, t_option *option);
+char			*ft_put_nb_pr(char *str, t_option *option);
+char			*ft_put_nb_sign_x(char *str, t_option *option);
+char			*ft_put_nb_w(char *str, t_option *option);
+char			*ft_base(char c);
+int				ft_nblen(unsigned long long nb, t_option *option);
+void			ft_swap(char *c1, char *c2);
 
 #endif
