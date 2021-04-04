@@ -6,11 +6,12 @@
 /*   By: seungnle <seungnle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 20:27:23 by seungnle          #+#    #+#             */
-/*   Updated: 2021/04/04 06:08:32 by seungnle         ###   ########.fr       */
+/*   Updated: 2021/04/04 10:20:54 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "stdio.h"
 
 int			ft_print(va_list ap, t_option *option)
 {
