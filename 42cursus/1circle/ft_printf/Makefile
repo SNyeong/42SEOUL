@@ -6,7 +6,7 @@
 #    By: seungnle <seungnle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/04 05:10:14 by seungnle          #+#    #+#              #
-#    Updated: 2021/04/04 06:08:07 by seungnle         ###   ########.fr        #
+#    Updated: 2021/04/04 10:42:47 by seungnle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,3 +38,5 @@ clean :
 	make clean -C $(LIBFT)
 
 re : fclean all
+
+.PHONY : all clean fclean re
