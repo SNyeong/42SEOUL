@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungnle <seungnle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 20:27:23 by seungnle          #+#    #+#             */
-/*   Updated: 2021/04/04 10:20:54 by seungnle         ###   ########.fr       */
+/*   Updated: 2021/04/26 18:58:04 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void		check_wid_pr(char *str, va_list ap, t_option *option, int idx)
 	}
 }
 
-void			check_flags(char *str, va_list ap, t_option *option, int idx)
+void		check_flags(char *str, va_list ap, t_option *option, int idx)
 {
 	if (str[idx] == '0' && option->width == 0 && option->precision == -1)
 		option->zero = 1;
