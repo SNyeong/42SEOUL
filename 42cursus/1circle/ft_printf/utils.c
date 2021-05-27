@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungnle <seungnle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 07:30:26 by seungnle          #+#    #+#             */
-/*   Updated: 2021/04/04 10:31:42 by seungnle         ###   ########.fr       */
+/*   Updated: 2021/05/06 22:14:47 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@ void	init_option(t_option *option)
 	option->base = 10;
 }
 
-void			check_option(t_option *option)
+void	check_option(t_option *option)
 {
 	if (option->type == '%' && option->zero)
 		option->zero = (option->minus) ? 0 : 1;
 	else if (option->minus || option->precision >= 0)
 		option->zero = 0;
-
 }
 
 char	*ft_base(char c)
@@ -57,6 +56,7 @@ int		ft_nblen(unsigned long long nb, t_option *option)
 	}
 	return (i);
 }
+
 void	ft_swap(char *c1, char *c2)
 {
 	char	c;
