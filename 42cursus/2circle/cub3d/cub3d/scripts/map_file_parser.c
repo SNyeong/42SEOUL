@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_file_parser.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungnle <seungnle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 16:33:05 by seungnle          #+#    #+#             */
-/*   Updated: 2021/05/28 06:39:36 by seungnle         ###   ########.fr       */
+/*   Updated: 2021/05/28 12:59:17 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int		parse(t_struct *data, char *av)
 {
 	int		fd;
 	char	*buff;
-	char	*tmp;
 	int		ret;
 
 	ret = 1;
@@ -104,8 +103,7 @@ int		parse(t_struct *data, char *av)
 		error("\e[0;31mError : Couldn't open file (FD)\n");
 	while (ret == 1)
 	{
-		ret = get_next_line(fd, &tmp);
-		buff = my_join(buff, tmp);
+		ret = get_next_line(fd, &buff);
 	}
 	if (ret == -1)
 		error("\e[0;31mError : Couldn't parse (GNL)\n");
@@ -117,5 +115,6 @@ int		parse(t_struct *data, char *av)
 		error("\e[0;31mplayer isn't found!\n");
 	if (!check_read_values(data))
 		return (FALSE);
+	free(buff);
 	return (TRUE);
 }
