@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destruct.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungnle <seungnle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seungnle <seungnle@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 17:30:40 by seungnle          #+#    #+#             */
-/*   Updated: 2021/05/28 07:02:50 by seungnle         ###   ########.fr       */
+/*   Updated: 2021/05/28 11:51:26 by seungnle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	destruct(t_struct *data)
 		free(data->sprite);
 	if (data->map[0])
 	{
-			while (i < data->y_lines - 1)
+		while (i < data->y_lines - 1)
 		{
 			free(data->map[i]);
 			i++;
